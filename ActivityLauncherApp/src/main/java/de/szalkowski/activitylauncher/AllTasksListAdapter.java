@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import moe.htk.dndlauncher.MainActivity;
+import moe.htk.dndlauncher.R;
+import moe.htk.dndmode.DNDHandler;
+
 public class AllTasksListAdapter extends BaseExpandableListAdapter implements Filterable {
     private PackageManager pm;
     private List<MyPackageInfo> packages;
     private LayoutInflater inflater;
     private List<MyPackageView> filtered;
+    public static List<String> pkgNames;
 
     private class MyPackageView {
         private class Child {
@@ -56,23 +62,45 @@ public class AllTasksListAdapter extends BaseExpandableListAdapter implements Fi
         PackageManagerCache cache = PackageManagerCache.getPackageManagerCache(this.pm);
         List<PackageInfo> all_packages = this.pm.getInstalledPackages(0);
         this.packages = new ArrayList<>(all_packages.size());
-        updater.updateMax(all_packages.size());
-        updater.update(0);
-
-        for (int i = 0; i < all_packages.size(); ++i) {
-            updater.update(i + 1);
-            PackageInfo pack = all_packages.get(i);
-            MyPackageInfo mypack;
-            try {
-                mypack = cache.getPackageInfo(pack.packageName);
-                if (mypack.getActivitiesCount() > 0) {
-                    this.packages.add(mypack);
+        this.pkgNames = new ArrayList<>(20);
+        Log.d("DNDL-saved", String.valueOf(DNDHandler.mContext.getSharedPreferences("default", Context.MODE_PRIVATE).getBoolean("list_saved", false)));
+        if (DNDHandler.mContext.getSharedPreferences("default", Context.MODE_PRIVATE).getBoolean("list_saved", false) &&
+            MainActivity.gameOnly) {
+            String[] pkgNames = DNDHandler.mContext.getSharedPreferences("default", Context.MODE_PRIVATE).getString("list", "").split(",");
+            for (String pkgname : pkgNames) {
+                MyPackageInfo mypack;
+                try {
+                    mypack = cache.getPackageInfo(pkgname);
+                    if (null == pm.getLaunchIntentForPackage(pkgname)) continue;
+                    if (mypack.getActivitiesCount() > 0) {
+                        this.packages.add(mypack);
+                        this.pkgNames.add(pkgname);
+                    }
+                } catch (NameNotFoundException ignored) {
+                } catch (RuntimeException ignored) {
                 }
-            } catch (NameNotFoundException ignored) {
-            } catch (RuntimeException ignored) {
             }
+        } else {
+            updater.updateMax(all_packages.size());
+            updater.update(0);
+            for (int i = 0; i < all_packages.size(); ++i) {
+                updater.update(i + 1);
+                PackageInfo pack = all_packages.get(i);
+                MyPackageInfo mypack;
+                try {
+                    mypack = cache.getPackageInfo(pack.packageName);
+                    if (null == pm.getLaunchIntentForPackage(pack.packageName)) continue;
+                    if ((!MainActivity.gameOnly || mypack.isGame(this.pm)) &&
+                            mypack.getActivitiesCount() > 0) {
+                        this.packages.add(mypack);
+                        pkgNames.add(pack.packageName);
+                    }
+                } catch (NameNotFoundException ignored) {
+                } catch (RuntimeException ignored) {
+                }
+            }
+            Log.d("DNDL-saved", String.valueOf(pkgNames.size()));
         }
-
         Collections.sort(this.packages);
         this.filtered = createFilterView("");
 

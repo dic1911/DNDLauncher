@@ -6,6 +6,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 
 import java.util.Arrays;
 
@@ -101,6 +102,22 @@ public class MyPackageInfo implements Comparable<MyPackageInfo> {
 
     public String getIconResourceName() {
         return icon_resource_name;
+    }
+
+    public Boolean isGame(PackageManager pm) {
+        try {
+            ApplicationInfo info = pm.getApplicationInfo(getPackageName(), 0);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                return info.category == ApplicationInfo.CATEGORY_GAME;
+            } else {
+                // We are suppressing deprecation since there are no other options in this API Level
+                //noinspection deprecation
+                return (info.flags & ApplicationInfo.FLAG_IS_GAME) == ApplicationInfo.FLAG_IS_GAME;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override

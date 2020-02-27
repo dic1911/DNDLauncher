@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Activity Launcher</string>
+    <string name="app_name">DND Launcher</string>
     <string name="title_section_all">All activities</string>
     <string name="title_dialog_disclaimer">Disclaimer</string>
     <string name="title_dialog_icon_picker">Pick an icon</string>
@@ -30,4 +30,7 @@
     <string name="error_no_default_activity">Package does not have a default activity - try to select one explicitly</string>
     <string name="action_filter">Filter...</string>
     <string name="filter_hint">package/action</string>
+    <string name="action_game_only">Games Only</string>
+    <string name="error_dnd_denied">Error: Access to notification settings denied</string>
+    <string name="add_as_game">Add as game</string>
 </resources>

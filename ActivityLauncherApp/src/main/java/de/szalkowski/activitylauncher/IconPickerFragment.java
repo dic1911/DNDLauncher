@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import moe.htk.dndlauncher.R;
+
 public class IconPickerFragment extends Fragment implements IconListAsyncProvider.Listener<IconListAdapter> {
     protected GridView grid;
 

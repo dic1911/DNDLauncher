@@ -1,4 +1,4 @@
-package de.szalkowski.activitylauncher;
+package moe.htk.dndlauncher;
 
 import android.annotation.TargetApi;
 import android.app.ActionBar;
@@ -12,29 +12,52 @@ import android.view.MenuItem;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
+import de.szalkowski.activitylauncher.AllTasksListFragment;
+import de.szalkowski.activitylauncher.DisclaimerDialogFragment;
+import moe.htk.dndmode.DNDHandler;
+import moe.htk.dndmode.DNDService;
+
 public class MainActivity extends FragmentActivity {
 
-    private final String LOG = "de.szalkowski.activitylauncher.MainActivity";
+    //private final String LOG = "moe.htk.dndlauncher.MainActivity";
     private Filterable filterTarget = null;
+    public static boolean gameOnly = true;
+
+    private AllTasksListFragment games, all;
+    private static boolean populated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        stopService(new Intent(getBaseContext(), DNDService.class));
+
         if (!getPreferences(Context.MODE_PRIVATE).getBoolean("disclaimer_accepted", false)) {
             DialogFragment dialog = new DisclaimerDialogFragment();
             dialog.show(getSupportFragmentManager(), "DisclaimerDialogFragment");
         }
 
-        AllTasksListFragment fragment = new AllTasksListFragment();
+        games = new AllTasksListFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, fragment).commit();
-        filterTarget = fragment;
+                .replace(R.id.container, games).commit();
+        filterTarget = games;
+
+        DNDHandler.initMonitor(getApplicationContext());
+        if (!DNDHandler.checkPermission(getApplicationContext())) {
+            Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
+            this.startActivity(intent);
+        }
+        DNDHandler.saveNotiMode();
+        //startService(new Intent(getBaseContext(), DNDService.class));
+        //Intent serviceIntent = new Intent(this, DNDService.class);
+
+        //ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     /**
@@ -91,6 +114,15 @@ public class MainActivity extends FragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_games_only:
+                if (!populated && this.gameOnly) {
+                    this.gameOnly = !this.gameOnly;
+                    all = new AllTasksListFragment();
+                } else { this.gameOnly = !this.gameOnly; }
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, (this.gameOnly ? games : all)).commit();
+                item.setChecked(this.gameOnly);
+                return true;
             case R.id.action_view_source:
                 Intent i2 = new Intent(Intent.ACTION_VIEW);
                 i2.setData(Uri.parse(this.getString(R.string.url_source)));
@@ -119,5 +151,22 @@ public class MainActivity extends FragmentActivity {
     public void onSaveInstanceState(Bundle outState) {
         // Serialize the current dropdown position.
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //DNDHandler.saveNotiMode();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        try {
+            DNDHandler.loadNotiMode();
+            stopService(new Intent(getBaseContext(), DNDService.class));
+        } catch (Exception e) {
+            Toast.makeText(this, R.string.error_dnd_denied, Toast.LENGTH_LONG).show();
+        }
     }
 }

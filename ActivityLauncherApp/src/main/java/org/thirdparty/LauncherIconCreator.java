@@ -31,9 +31,13 @@ import java.util.Objects;
 
 import de.szalkowski.activitylauncher.MyActivityInfo;
 import de.szalkowski.activitylauncher.MyPackageInfo;
-import de.szalkowski.activitylauncher.R;
+import moe.htk.dndlauncher.R;
+import moe.htk.dndmode.DNDHandler;
+import moe.htk.dndmode.DNDService;
 
 public class LauncherIconCreator {
+
+    public static Context mContext;
 
     private static Intent getActivityIntent(ComponentName activity) {
         Intent intent = new Intent();
@@ -85,6 +89,8 @@ public class LauncherIconCreator {
 
     public static void launchActivity(Context context, ComponentName activity) {
         Intent intent = LauncherIconCreator.getActivityIntent(activity);
+        DNDHandler.enableDND();
+        context.startService(new Intent(context, DNDService.class));
         Toast.makeText(context, String.format(context.getText(R.string.starting_activity).toString(), activity.flattenToShortString()),
                 Toast.LENGTH_LONG).show();
         try {

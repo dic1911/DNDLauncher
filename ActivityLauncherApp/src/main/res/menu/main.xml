@@ -16,4 +16,10 @@
         android:id="@+id/action_view_bugs"
         android:showAsAction="never"
         android:title="@string/action_view_bugs" />
+    <item
+        android:id="@+id/action_games_only"
+        android:showAsAction="never"
+        android:title="@string/action_game_only"
+        android:checkable="true"
+        android:checked="true" />
 </menu>

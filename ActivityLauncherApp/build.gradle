@@ -10,8 +10,8 @@ android {
     }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "de.szalkowski.activitylauncher"
-        minSdkVersion 14
+        applicationId "moe.htk.dndlauncher"
+        minSdkVersion 23
         targetSdkVersion 28
     }
     buildTypes {

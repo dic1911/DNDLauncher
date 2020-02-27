@@ -1,8 +1,11 @@
 package de.szalkowski.activitylauncher;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -24,10 +27,13 @@ import androidx.fragment.app.Fragment;
 
 import org.thirdparty.LauncherIconCreator;
 
+import moe.htk.dndlauncher.R;
+import moe.htk.dndmode.DNDHandler;
+
 public class AllTasksListFragment extends Fragment implements AllTasksListAsyncProvider.Listener<AllTasksListAdapter>, Filterable {
     private ExpandableListView list;
 
-    AllTasksListFragment() {
+    public AllTasksListFragment() {
         super();
     }
 
@@ -82,6 +88,7 @@ public class AllTasksListFragment extends Fragment implements AllTasksListAsyncP
                 MyPackageInfo pack = (MyPackageInfo) list.getExpandableListAdapter().getGroup(ExpandableListView.getPackedPositionGroup(info.packedPosition));
                 menu.setHeaderIcon(pack.icon);
                 menu.setHeaderTitle(pack.name);
+                menu.add(Menu.NONE, 2, Menu.NONE, R.string.add_as_game);
                 break;
         }
 
@@ -124,11 +131,22 @@ public class AllTasksListFragment extends Fragment implements AllTasksListAsyncP
                         PackageManager pm = getActivity().getPackageManager();
                         Intent intent = pm.getLaunchIntentForPackage(pack.package_name);
                         if (intent != null) {
+                            NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                            mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_NONE);
+                            Log.d("DNDL", "Launching " + pack.name + "(" + pack.package_name + ")");
+                            Log.d("DNDL", String.valueOf(mNotificationManager.getCurrentInterruptionFilter()));
                             Toast.makeText(getActivity(), String.format(getText(R.string.starting_application).toString(), pack.name), Toast.LENGTH_LONG).show();
                             getActivity().startActivity(intent);
                         } else {
                             Toast.makeText(getActivity(), getString(R.string.error_no_default_activity), Toast.LENGTH_LONG).show();
                         }
+                        break;
+                    case 2:
+                        String newList = DNDHandler.mContext.getSharedPreferences("default", Context.MODE_PRIVATE).getString("list", "");
+                        if (!newList.equals("")) newList += ",";
+                        newList += pack.package_name;
+                        Log.d("DNDL-saver", newList);
+                        DNDHandler.mContext.getSharedPreferences("default", Context.MODE_PRIVATE).edit().putString("list", newList).commit();
                         break;
                 }
         }

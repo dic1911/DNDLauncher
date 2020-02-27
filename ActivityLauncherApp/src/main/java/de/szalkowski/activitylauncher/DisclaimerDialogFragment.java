@@ -11,6 +11,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+import moe.htk.dndlauncher.R;
+
 public class DisclaimerDialogFragment extends DialogFragment {
     @NonNull
     @Override

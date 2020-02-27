@@ -24,6 +24,7 @@ import androidx.fragment.app.DialogFragment;
 import org.thirdparty.LauncherIconCreator;
 
 import de.szalkowski.activitylauncher.IconPickerDialogFragment.IconPickerListener;
+import moe.htk.dndlauncher.R;
 
 public class ShortcutEditDialogFragment extends DialogFragment {
     protected MyActivityInfo activity;
