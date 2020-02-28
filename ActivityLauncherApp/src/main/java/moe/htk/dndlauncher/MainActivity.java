@@ -7,12 +7,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
@@ -163,10 +163,12 @@ public class MainActivity extends FragmentActivity {
     public void onResume() {
         super.onResume();
         try {
+            DNDHandler.mContext = getApplicationContext();
             DNDHandler.loadNotiMode();
             stopService(new Intent(getBaseContext(), DNDService.class));
         } catch (Exception e) {
-            Toast.makeText(this, R.string.error_dnd_denied, Toast.LENGTH_LONG).show();
+            Log.e("DNDL-onResume", e.toString());
+            //Toast.makeText(this, R.string.error_dnd_denied, Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.app.NotificationManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class DNDHandler {
     }
 
     public static String getTopPkg() {
+        if (am == null) am = (ActivityManager) mContext.getSystemService(ACTIVITY_SERVICE);
         List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
         return taskInfo.get(0).topActivity.getPackageName();
     }
@@ -41,6 +43,7 @@ public class DNDHandler {
     public static void enableDND(){
         Log.d("DNDL", "Attempt to enable DND");
         mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALARMS);
+        mContext.startService(new Intent(mContext, DNDService.class));
     }
 
     public static void saveNotiMode() {
