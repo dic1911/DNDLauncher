@@ -23,6 +23,7 @@ import org.thirdparty.LauncherIconCreator;
 
 import de.szalkowski.activitylauncher.AllTasksListFragment;
 import de.szalkowski.activitylauncher.DisclaimerDialogFragment;
+import de.szalkowski.activitylauncher.HelpDialogFragment;
 import moe.htk.dndmode.DNDHandler;
 import moe.htk.dndmode.DNDService;
 
@@ -145,17 +146,14 @@ public class MainActivity extends FragmentActivity {
                 i2.setData(Uri.parse(this.getString(R.string.url_source)));
                 this.startActivity(i2);
                 return true;
-
-            case R.id.action_view_translation:
-                Intent i3 = new Intent(Intent.ACTION_VIEW);
-                i3.setData(Uri.parse(this.getString(R.string.url_translation)));
-                this.startActivity(i3);
-                return true;
-
             case R.id.action_view_bugs:
                 Intent i4 = new Intent(Intent.ACTION_VIEW);
                 i4.setData(Uri.parse(this.getString(R.string.url_bugs)));
                 this.startActivity(i4);
+                return true;
+            case R.id.action_help:
+                DialogFragment dialog = new HelpDialogFragment();
+                dialog.show(getSupportFragmentManager(), "HelpDialogFragment");
                 return true;
 
             default:

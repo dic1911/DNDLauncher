@@ -5,7 +5,6 @@
     <string name="title_dialog_disclaimer">Dichiarazione di non responsabilità</string>
     <string name="title_dialog_icon_picker">Scegli un\'icona</string>
     <string name="dialog_progress_loading">Caricamento&#8230;</string>
-    <string name="dialog_disclaimer">Utilizzare questo software a proprio rischio. Alcune applicazioni potrebbero non funzionare come previsto quando le loro attività sono avviate nel contesto sbagliato il che porta alla perdita di dati o anche peggio. Siete stati avvertiti. Avete capito questo e volete continuare ad utilizzare questo software?</string>
     <string name="context_action_launch">Attività launcher</string>
     <string name="context_action_shortcut">Crea scorciatoia</string>
     <string name="context_action_edit">Modifica scorciatoia</string>

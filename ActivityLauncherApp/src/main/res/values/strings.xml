@@ -5,7 +5,8 @@
     <string name="title_dialog_disclaimer">Disclaimer</string>
     <string name="title_dialog_icon_picker">Pick an icon</string>
     <string name="dialog_progress_loading">Loading…</string>
-    <string name="dialog_disclaimer">Use this software at your own risk. Some apps might not behave as expected when their activities are launched in the wrong context leading to data loss or even worse. You have been warned. Do you understand this and still want to use this software?</string>
+    <string name="dialog_disclaimer">This app is modified from ActivityLauncher for undisturbed gaming experience. As this app is yet to be well tested, you should use this software at your own risk. Some apps might not behave as expected when their activities are launched in the wrong context leading to data loss or even worse. You have been warned. Do you understand this and still want to use this software?</string>
+    <string name="dialog_help">Usage:\n\nLong press game/app name, tap \'Launch activity\'\n\nor\n\nTap on default activity for specific game/app\n\n\nDesired game wasn\'t shown?\n1. Uncheck \'Games Only\' in menu\n2. Wait for the app finish loading\n3. Long press game/app name then tap on \'Add as game\'\n4. Now the app will show added game upon launch</string>
     <string name="context_action_launch">Launch activity</string>
     <string name="context_action_shortcut">Create shortcut</string>
     <string name="context_action_edit">Edit shortcut</string>
@@ -33,4 +34,5 @@
     <string name="action_game_only">Games Only</string>
     <string name="error_dnd_denied">Error: Access to notification settings denied</string>
     <string name="add_as_game">Add as game</string>
+    <string name="action_help">Help</string>
 </resources>

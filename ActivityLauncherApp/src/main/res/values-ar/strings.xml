@@ -5,7 +5,6 @@
     <string name="title_dialog_disclaimer">إخلاء مسؤولية</string>
     <string name="title_dialog_icon_picker">اختر رمزا</string>
     <string name="dialog_progress_loading">جار التحميل&#8230;</string>
-    <string name="dialog_disclaimer">استخدام هذا البرنامج على مسؤوليتك الخاصة. بعض التطبيقات قد لا تتصرف كما هو متوقع عند إطلاق أنشطتها في سياق خاطئ يؤدي إلى فقدان البيانات أو حتى أسوأ من ذلك. وقد تم تحذيرك. هل نفهم هذا ولا تزال ترغب في استخدام هذا البرنامج؟</string>
     <string name="context_action_launch">إطلاق النشاط</string>
     <string name="context_action_shortcut">إنشاء اختصار</string>
     <string name="context_action_edit">تحرير الاختصار</string>

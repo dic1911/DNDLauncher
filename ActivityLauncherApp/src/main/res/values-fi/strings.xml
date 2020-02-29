@@ -5,7 +5,6 @@
     <string name="title_dialog_disclaimer">Vastuuvapauslauseke</string>
     <string name="title_dialog_icon_picker">Valitse ikoni</string>
     <string name="dialog_progress_loading">Ladataan...</string>
-    <string name="dialog_disclaimer">Käytä tätä sovellusta omalla vastuullasi. Jotkut sovellukset ei välttämättä toimi odotetulla tavalla, kun sovellusten toiminta on käynnistetty väärin se voi johtaa tietojen menetykseen tai pahempaan. Sinua on varoitettu. Ymmärrätkö sinä ja haluat silti käyttää tätä sovellusta?</string>
     <string name="context_action_launch">Käynnistä toiminta</string>
     <string name="context_action_shortcut">Luo pikakuvake</string>
     <string name="context_action_edit">Muokkaa pikakuvaketta</string>

@@ -5,7 +5,6 @@
     <string name="title_dialog_disclaimer">Clauza Exonerare</string>
     <string name="title_dialog_icon_picker">Alege o iconița</string>
     <string name="dialog_progress_loading">Se încarcă...</string>
-    <string name="dialog_disclaimer">Utilizati această aplicatie cu propriul risc. Unele aplicații pot sa se comporte greșit când activitățile lor sunt lansate intr-un context greșit iar acest lucru poate duce la pierderea datelor sau ceva mai rău.Ai fost atenționat! Înțelegi asta si inca doresti sa folosesti acest soft?</string>
     <string name="context_action_launch">Launch activity</string>
     <string name="context_action_shortcut">Crează o scurtătura pe ecranul principal</string>
     <string name="context_action_edit">Editează Scurtătura</string>

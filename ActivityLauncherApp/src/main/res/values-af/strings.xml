@@ -5,7 +5,6 @@
     <string name="title_dialog_disclaimer">Vrywaring</string>
     <string name="title_dialog_icon_picker">Kies \'n ikoon</string>
     <string name="dialog_progress_loading">Laai tans...</string>
-    <string name="dialog_disclaimer">Gebruik hierdie sagteware op jou eie risiko. Sommige toepassings kan nie optree soos verwag wanneer hulle aktiwiteite is geloods in die verkeerde konteks wat lei tot verlies van data of selfs erger. Jy het gewaarsku. Doen jy dit verstaan en steeds wil hierdie sagteware gebruik?</string>
     <string name="context_action_launch">Laai aktiwiteit</string>
     <string name="context_action_shortcut">Skep kortpad</string>
     <string name="context_action_edit">Redigeer kortpad</string>

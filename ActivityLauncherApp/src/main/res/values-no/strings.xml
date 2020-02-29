@@ -5,7 +5,6 @@
     <string name="title_dialog_disclaimer">Ansvarsfraskrivelse</string>
     <string name="title_dialog_icon_picker">Velg et ikon</string>
     <string name="dialog_progress_loading">Laster&#8230;</string>
-    <string name="dialog_disclaimer">Bruk denne programvare på eget ansvar. Noen programmer kan ikke fungere som forventet når deres aktiviteter er lansert i feil sammenheng fører til tap av data eller enda verre. Du har blitt advart. Du forstår dette og fortsatt ønsker å bruke denne programvaren?</string>
     <string name="context_action_launch">Start aktivitet</string>
     <string name="context_action_shortcut">Opprett snarvei</string>
     <string name="context_action_edit">Sette snarveien</string>

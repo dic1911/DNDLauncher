@@ -5,8 +5,6 @@
     <string name="title_dialog_disclaimer">כתב ויתור</string>
     <string name="title_dialog_icon_picker">בחר סמל</string>
     <string name="dialog_progress_loading">טוען...</string>
-    <string name="dialog_disclaimer">השתמש בתוכנה זו באחריותך בלבד. אפליקציות מסוימות עלולות לא לפעול כצפוי, ואף עלול להוביל לאובדן נתונים.
-האם אתה מבין ועדיין רוצה להשתמש בתוכנה זו?</string>
     <string name="context_action_launch">בחר פעילות</string>
     <string name="context_action_shortcut">צור קיצור דרך</string>
     <string name="context_action_edit">עריכת קיצור דרך</string>

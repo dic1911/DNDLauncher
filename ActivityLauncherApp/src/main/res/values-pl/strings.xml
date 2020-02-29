@@ -5,7 +5,6 @@
     <string name="title_dialog_disclaimer">Zrzeczenie się</string>
     <string name="title_dialog_icon_picker">Wybierz ikonę</string>
     <string name="dialog_progress_loading">Wczytywanie &#8230;</string>
-    <string name="dialog_disclaimer">Korzystasz z tego programu na własne ryzyko. Niektóre aplikacje mogą nie działać zgodnie z oczekiwaniami, jeśli będą uruchamiane w złym kontekście. Może to prowadzić do utraty danych lub nawet gorzej. Zostałeś ostrzeżony. Czy rozumiesz to i mimo wszystko chcesz używać tego programu?</string>
     <string name="context_action_launch">Rozpocznij aktywność</string>
     <string name="context_action_shortcut">Utwórz skrót</string>
     <string name="context_action_edit">Edytuj skrót</string>

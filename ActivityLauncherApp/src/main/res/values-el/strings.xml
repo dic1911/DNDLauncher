@@ -5,7 +5,6 @@
     <string name="title_dialog_disclaimer">Αποποίηση ευθυνών</string>
     <string name="title_dialog_icon_picker">Επιλέξετε ένα εικονίδιο</string>
     <string name="dialog_progress_loading">Φόρτωση&#8230;</string>
-    <string name="dialog_disclaimer">Χρησιμοποιήστε αυτό το λογισμικό με δική σας ευθύνη. Κάποιες εφαρμογές ίσως να μην συμπεριφερθούν όπως αναμένεται όταν οι δραστηριότητές τους εκκινούνται με λάθος τρόπο που οδηγεί σε απώλεια δεδομένων ή ακόμη χειρότερα. Έχετε προειδοποιηθεί. Το κατανοείτε αυτό και θέλετε ακόμη να χρησιμοποιήσετε αυτό το λογισμικό;</string>
     <string name="context_action_launch">Εκκίνηση δραστηριότητας</string>
     <string name="context_action_shortcut">Δημιουργία συντόμευσης</string>
     <string name="context_action_edit">Επεξεργασία συντόμευσης</string>

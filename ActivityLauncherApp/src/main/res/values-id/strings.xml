@@ -5,7 +5,6 @@
     <string name="title_dialog_disclaimer">Sanggahan</string>
     <string name="title_dialog_icon_picker">Pilih ikon</string>
     <string name="dialog_progress_loading">Memuat&#8230;</string>
-    <string name="dialog_disclaimer">Segala resiko dari penggunaan perangkat lunak ini menjadi tanggung jawab anda. Beberapa aplikasi mungkin tidak berjalan seperti yang diinginkan saat diaplikasikan dalam konteks yang salah seperti kehilangan data atau mungkin lebih buruk. Anda sudah diingatkan. Apakah anda paham dan tetap ingin menggunakan perangkat lunak ini?</string>
     <string name="context_action_launch">Luncurkan bantuan</string>
     <string name="context_action_shortcut">Buat pintasan</string>
     <string name="context_action_edit">Sunting pintasan</string>

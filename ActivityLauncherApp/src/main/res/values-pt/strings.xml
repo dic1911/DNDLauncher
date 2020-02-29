@@ -5,8 +5,6 @@
     <string name="title_dialog_disclaimer">Aviso</string>
     <string name="title_dialog_icon_picker">Escolha um ícone</string>
     <string name="dialog_progress_loading">A carregar&#8230;</string>
-    <string name="dialog_disclaimer">Utilize este software por sua conta e risco.
-Algumas aplicações podem comportar-se de forma inesperada quando as suas atividades são lançadas em contexto diferente podendo levar á perda de dados ou pior. Pretende aceitar e continuar?</string>
     <string name="context_action_launch">Lançar atividade</string>
     <string name="context_action_shortcut">Criar atalho</string>
     <string name="context_action_edit">Editar atalho</string>

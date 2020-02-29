@@ -5,7 +5,6 @@
     <string name="title_dialog_disclaimer">Ansvarsfraskrivelse</string>
     <string name="title_dialog_icon_picker">Vælg et ikon</string>
     <string name="dialog_progress_loading">Indlæser&#8230;</string>
-    <string name="dialog_disclaimer">Denne software benyttes på eget ansvar. Visse apps kan opføre sig uhensigtsmæssigt, når deres aktiviteter startes i en ukorrekt kontekst, hvilket kan betyde tab af data eller værre. Du er hermed advaret. Vil du fortsat benytte denne software?</string>
     <string name="context_action_launch">Start aktivitet</string>
     <string name="context_action_shortcut">Opret genvej</string>
     <string name="context_action_edit">Redigér genvej</string>
