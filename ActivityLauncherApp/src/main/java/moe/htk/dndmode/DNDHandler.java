@@ -52,6 +52,7 @@ public class DNDHandler {
 
     public static void loadNotiMode() {
         Log.d("DNDL", "Attempt to restore notification mode");
-        mNotificationManager.setInterruptionFilter(savedNotiMode);
+        mNotificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL);
+        //mNotificationManager.setInterruptionFilter(savedNotiMode);
     }
 }
