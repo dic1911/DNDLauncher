@@ -2,6 +2,8 @@ package moe.htk.dndlauncher;
 
 import android.annotation.TargetApi;
 import android.app.ActionBar;
+import android.app.NotificationManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,6 +19,8 @@ import android.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
+import org.thirdparty.LauncherIconCreator;
+
 import de.szalkowski.activitylauncher.AllTasksListFragment;
 import de.szalkowski.activitylauncher.DisclaimerDialogFragment;
 import moe.htk.dndmode.DNDHandler;
@@ -27,6 +31,7 @@ public class MainActivity extends FragmentActivity {
     //private final String LOG = "moe.htk.dndlauncher.MainActivity";
     private Filterable filterTarget = null;
     public static boolean gameOnly = true;
+    private static boolean opOnResume = true;
 
     private AllTasksListFragment games, all;
     private static boolean populated = false;
@@ -34,9 +39,21 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        DNDHandler.mContext = getApplicationContext();
+        DNDHandler.mNotificationManager = (NotificationManager) DNDHandler.mContext.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        stopService(new Intent(getBaseContext(), DNDService.class));
+        Bundle data = this.getIntent().getExtras();
+        if (data != null) {
+            Log.d("DNDL-extras", String.valueOf(data.size()));
+            if (data.containsKey("target_pkg")) {
+                ComponentName componentName = new ComponentName((String) data.get("target_pkg"), (String) data.get("target_cmp"));
+                LauncherIconCreator.launchActivity(getApplicationContext(), componentName);
+                DNDHandler.enableDND();
+                opOnResume = false;
+            }
+        }
+
+        setContentView(R.layout.activity_main);
 
         if (!getPreferences(Context.MODE_PRIVATE).getBoolean("disclaimer_accepted", false)) {
             DialogFragment dialog = new DisclaimerDialogFragment();
@@ -164,8 +181,10 @@ public class MainActivity extends FragmentActivity {
         super.onResume();
         try {
             DNDHandler.mContext = getApplicationContext();
-            DNDHandler.loadNotiMode();
-            stopService(new Intent(getBaseContext(), DNDService.class));
+            if (opOnResume) {
+                DNDHandler.loadNotiMode();
+                stopService(new Intent(getBaseContext(), DNDService.class));
+            }
         } catch (Exception e) {
             Log.e("DNDL-onResume", e.toString());
             //Toast.makeText(this, R.string.error_dnd_denied, Toast.LENGTH_LONG).show();

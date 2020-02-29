@@ -36,7 +36,18 @@ import moe.htk.dndmode.DNDHandler;
 
 public class LauncherIconCreator {
 
-    public static Context mContext;
+    private static Intent getShortcutActivityIntent(ComponentName activity) {
+        Intent intent = new Intent(DNDHandler.mContext, moe.htk.dndlauncher.MainActivity.class);
+        String pkg = activity.getPackageName();
+        String cmp = activity.getClassName();
+        intent.putExtra("target_pkg", pkg);
+        intent.putExtra("target_cmp", cmp);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        return intent;
+    }
 
     private static Intent getActivityIntent(ComponentName activity) {
         Intent intent = new Intent();
@@ -52,9 +63,9 @@ public class LauncherIconCreator {
 
         // Use bitmap version if icon from different package is used
         if (!pack.equals(activity.getComponentName().getPackageName())) {
-            createShortcut(context, activity.getName(), activity.getIcon(), getActivityIntent(activity.getComponentName()), null);
+            createShortcut(context, activity.getName(), activity.getIcon(), getShortcutActivityIntent(activity.getComponentName()), null);
         } else {
-            createShortcut(context, activity.getName(), activity.getIcon(), getActivityIntent(activity.getComponentName()),
+            createShortcut(context, activity.getName(), activity.getIcon(), getShortcutActivityIntent(activity.getComponentName()),
                     activity.getIconResouceName());
         }
         return true;
@@ -89,7 +100,6 @@ public class LauncherIconCreator {
     public static void launchActivity(Context context, ComponentName activity) {
         Intent intent = LauncherIconCreator.getActivityIntent(activity);
         DNDHandler.enableDND();
-        //context.startService(new Intent(context, DNDService.class));
         Toast.makeText(context, String.format(context.getText(R.string.starting_activity).toString(), activity.flattenToShortString()),
                 Toast.LENGTH_LONG).show();
         try {
